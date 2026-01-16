@@ -1,4 +1,4 @@
-import Auto.CLI.start as start
+import cli.start as start
 while(True):
     start.start()
 

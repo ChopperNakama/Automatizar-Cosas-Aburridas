@@ -1,4 +1,4 @@
-import Auto.Test.test as test
+import funciones.test as test
 
 def start():
     tm, d, m, es_unica, mayor = preguntas()
