@@ -1,4 +1,4 @@
-import funciones.test as test
+import logica.funciones as funciones
 
 def start():
     tm, d, m, es_unica, mayor = preguntas()
@@ -6,27 +6,27 @@ def start():
     if tm == "MN":
         if es_unica:
             if mayor:
-                test.insertar_una_fila_mn_mayor_3000(d, m)
+                funciones.insertar_varias_filas_mn_mayor_3000(d,m,1)
             else:
-                test.insertar_una_fila_mn(d, m)
+                funciones.insertar_varias_filas_mn(d,m,1)
         else:
             rep = int(input("Ingrese la cantidad: "))
             if mayor:
-                test.insertar_varias_filas_mn_mayor_3000(d, m, rep)
+                funciones.insertar_varias_filas_mn_mayor_3000(d, m, rep)
             else:
-                test.insertar_varias_filas_mn(d, m, rep)
+                funciones.insertar_varias_filas_mn(d, m, rep)
     elif tm == "ME":
         if es_unica:
             if mayor:
-                test.insertar_una_fila_me_mayor_1000(d,m) 
+                funciones.insertar_varias_filas_me_mayor_1000(d,m,1)
             else:
-                test.insertar_una_fila_me(d,m) 
+                funciones.insertar_varias_filas_me(d,m,1)
         else:
             rep = int(input("Ingresa la cantidad: "))
             if mayor:
-                test.insertar_varias_filas_me_mayor_1000(d,m,rep)
+                funciones.insertar_varias_filas_me_mayor_1000(d,m,rep)
             else:
-                test.insertar_varias_filas_me(d,m,rep)
+                funciones.insertar_varias_filas_me(d,m,rep)
 
 def preguntas():
     tipo_moneda = input("Es ME o MN: ").strip().upper()
