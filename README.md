@@ -6,3 +6,4 @@ A sido probado con windowns solamente
 NEW
 Conla ayuda de pandas logre usar un excel como fuente y no cambiar ventanas existiendo mas posibilidades de que un problema exista a sido probado en StarSoft y debe de estar acomodado antes de 
 corra.
+Use IA para revisarlo y mejorarlo.

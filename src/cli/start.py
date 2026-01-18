@@ -1,26 +1,40 @@
 import logica.funciones as funciones
 
-def start(d,m,t,De):
-    tm, mayor = preguntas(t)
-    
-    if tm == "MN":
-        if mayor:
-            funciones.insertar_un_registro_mn_mayor_3000_final(d,m,De,t)
-        else:
-            funciones.insertar_un_registro_mn_final(d,m,De,t)
-    elif tm == "ME":
-        if mayor:
-            funciones.insertar_un_registro_me_mayor_1000_final(d,m,De,t)
-        else:
-            funciones.insertar_un_registro_me_final(d,m,De,t)
-def preguntas(total):
-    # tipo_moneda = input("Es ME o MN: ").strip().upper() para agilizar pq estoy en MN
-    tipo_moneda = "ME"
 
-    mayor = False
+def start(d, m, t, De):
+    """
+    Punto de entrada principal.
+    Decide tipo de moneda y si el monto es mayor,
+    luego inserta el registro correspondiente.
+    """
+
+    tipo_moneda, mayor = preguntas(t)
+
+    # es_mn es True solo si la moneda es MN
+    es_mn = tipo_moneda == "MN"
+
+    funciones.insertar_registro(
+        dia=d,
+        mes=m,
+        detalle=De,
+        total=t,
+        es_mn=es_mn,
+        monto_mayor=mayor
+    )
+
+
+def preguntas(total):
+    """
+    Determina el tipo de moneda y si el monto
+    supera el límite permitido.
+    """
+
+    # Fijado por ahora para agilizar
+    tipo_moneda = "ME"   # "MN" o "ME"
+
     if tipo_moneda == "ME":
-        mayor = total>=1000
-    elif tipo_moneda == "MN":
-        mayor = total>=3000
+        mayor = total >= 1000
+    else:  # MN
+        mayor = total >= 3000
 
     return tipo_moneda, mayor
