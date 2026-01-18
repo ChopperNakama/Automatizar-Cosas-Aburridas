@@ -43,10 +43,8 @@ Automatizar la entrada de datos en StarSoft para:
 - StarSoft (debe estar instalado y configurado)
 
 ### Dependencias Python
-```bash
-pyautogui
-csv (biblioteca estándar)
-```
+- `pyautogui` - Control de teclado y mouse
+- `csv` - Procesamiento de archivos CSV (biblioteca estándar de Python)
 
 ---
 
@@ -133,20 +131,21 @@ Automatizar-Cosas-Aburridas/
 
 ### Límites de montos
 
-En `src/cli/start.py` se definen los límites para montos mayores:
+En `src/cli/start.py`, la función `preguntas(total)` determina si un monto es considerado "mayor" según el tipo de moneda. Puedes ajustar estos límites según tus necesidades:
 
 ```python
-if tipo_moneda == "ME":
-    mayor = total >= 1000  # Moneda Extranjera
-else:  # MN
-    mayor = total >= 3000  # Moneda Nacional
+def preguntas(total):
+    tipo_moneda = "ME"   # Cambiar a "MN" para Moneda Nacional
+    
+    if tipo_moneda == "ME":
+        mayor = total >= 1000  # Moneda Extranjera: límite de $1,000
+    else:  # MN
+        mayor = total >= 3000  # Moneda Nacional: límite de $3,000
+    
+    return tipo_moneda, mayor
 ```
 
-### Tipo de moneda predeterminado
-
-```python
-tipo_moneda = "ME"   # Cambiar a "MN" para Moneda Nacional
-```
+Cuando `mayor` es `True`, el sistema ejecutará confirmaciones adicionales durante el registro.
 
 ---
 
