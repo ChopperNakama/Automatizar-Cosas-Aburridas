@@ -1,43 +1,26 @@
 import logica.funciones as funciones
 
-def start():
-    tm, d, m, es_unica, mayor = preguntas()
+def start(d,m,t,De):
+    tm, mayor = preguntas(t)
     
     if tm == "MN":
-        if es_unica:
-            if mayor:
-                funciones.insertar_varias_filas_mn_mayor_3000(d,m,1)
-            else:
-                funciones.insertar_varias_filas_mn(d,m,1)
+        if mayor:
+            funciones.insertar_un_registro_mn_mayor_3000_final(d,m,De,t)
         else:
-            rep = int(input("Ingrese la cantidad: "))
-            if mayor:
-                funciones.insertar_varias_filas_mn_mayor_3000(d, m, rep)
-            else:
-                funciones.insertar_varias_filas_mn(d, m, rep)
+            funciones.insertar_un_registro_mn_final(d,m,De,t)
     elif tm == "ME":
-        if es_unica:
-            if mayor:
-                funciones.insertar_varias_filas_me_mayor_1000(d,m,1)
-            else:
-                funciones.insertar_varias_filas_me(d,m,1)
+        if mayor:
+            funciones.insertar_un_registro_me_mayor_1000_final(d,m,De,t)
         else:
-            rep = int(input("Ingresa la cantidad: "))
-            if mayor:
-                funciones.insertar_varias_filas_me_mayor_1000(d,m,rep)
-            else:
-                funciones.insertar_varias_filas_me(d,m,rep)
-
-def preguntas():
-    tipo_moneda = input("Es ME o MN: ").strip().upper()
-    dia = input("Ingresa el día: ")
-    mes = input("Ingresa el mes: ")
-    es_unica = input("Es única? (1=Si/0=No): ") == "1"
+            funciones.insertar_un_registro_me_final(d,m,De,t)
+def preguntas(total):
+    # tipo_moneda = input("Es ME o MN: ").strip().upper() para agilizar pq estoy en MN
+    tipo_moneda = "ME"
 
     mayor = False
     if tipo_moneda == "ME":
-        mayor = input("Es mayor de 1000? (1=Si/0=No): ") == "1"
+        mayor = total>=1000
     elif tipo_moneda == "MN":
-        mayor = input("Es mayor de 3000? (1=Si/0=No): ") == "1"
+        mayor = total>=3000
 
-    return tipo_moneda, dia, mes, es_unica, mayor
+    return tipo_moneda, mayor
